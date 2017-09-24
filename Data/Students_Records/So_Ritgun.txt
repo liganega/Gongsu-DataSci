@@ -1,0 +1,7 @@
+# Personal info of students. No sharing is allowed.
+
+Name:	So Ritgun
+Date of Birth:	96.12.16
+Email:	RitgunSo@hknu.ac.kr
+Department: Computer
+Student ID: 201600232039 

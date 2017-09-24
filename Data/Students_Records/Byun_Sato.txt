@@ -1,0 +1,7 @@
+# Personal info of students. No sharing is allowed.
+
+Name:	Byun Sato
+Date of Birth:	95.4.28
+Email:	SatoByun@hknu.ac.kr
+Department: Computer
+Student ID: 201700251003 
