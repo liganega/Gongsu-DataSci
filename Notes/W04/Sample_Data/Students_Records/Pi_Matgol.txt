@@ -1,0 +1,7 @@
+# 학생들의 중요 개인정보이며, 배포를 금지함.
+
+Name:	Pi Matgol
+Date of Birth:	95.9.8
+Email:	MatgolPi@hknu.ac.kr
+Department: Environment
+Student ID: 201600213023 
