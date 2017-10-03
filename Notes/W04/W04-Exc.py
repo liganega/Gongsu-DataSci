@@ -1,4 +1,3 @@
-
 # coding: utf-8
 
 # # 연습문제 
@@ -14,12 +13,11 @@
 #     In [1]: n_divide(10)  
 #     out[1]: [0, 0.1, 0.2, ..., 0.9, 1]
 
-# In[1]:
 
 def n_divide(n):
 
-    
-n_divide(10)
+
+n_divide(1)
 
 
 # ### 연습 2
@@ -35,12 +33,11 @@ n_divide(10)
 #             Python.
 # 
 
-# In[2]:
 
 def sen2word(xs):
 
-    
-sen2word("I am learning Python. It's quite interesting.")
+
+sen2word("I am learning Python.")
 
 
 # ### 연습 3
@@ -57,17 +54,11 @@ sen2word("I am learning Python. It's quite interesting.")
 #     In [13]: fibo(5)    
 #     out[13]: [1, 1, 2, 3, 5]
 
-# In[3]:
 
 def fibo(n):
 
 
-print(fibo(10))
-
-
-# In[4]:
-
-fibo(5)
+print(fibo(5))
 
 
 # ### 연습 4
@@ -79,7 +70,6 @@ fibo(5)
 #     In [30]: sort_notes([("Lee", 45), ("Kim", 30), ("Kang", 70), ("Park", 99), ("Cho", 65)])
 #     Out[30]: [("Park", 99), ("Kang", 70), ("Cho", 65), ("Lee", 45), ("Kim", 30)]
 
-# In[5]:
 
 def sort_notes(xs):
 
@@ -97,10 +87,7 @@ sort_notes(L)
 #     In [19]: L = [5, 'abc', 2, [2,3]]
 #              num_sum(L)
 #     Out[19]: 7
-#     In [20]: L
-#     Out[20]: [5, 'abc', 2, [2,3]]
 
-# In[6]:
 
 def num_sum(xs):
 
