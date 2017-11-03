@@ -1,0 +1,909 @@
+
+% Default to the notebook output style
+
+
+
+
+% Inherit from the specified cell style.
+
+
+
+
+
+\documentclass[11pt]{article}
+
+    \usepackage[top=1cm, bottom=2cm, left=0cm, right=0cm]{geometry}
+
+    \usepackage{multicol}
+    \setlength{\columnseprule}{0.1mm}    % for two columns
+    \setlength{\columnsep}{.6cm}         % for two columns
+
+    \usepackage{kotex}
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+%    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+%    \usepackage{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics
+                         % to support a larger range
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+
+
+
+
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+
+
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{2017년 2학기 공업수학 중간고사}
+    \author{이름: \hspace{4cm} 학번: \hspace{4cm} 점수:\hspace{2cm}/ 100점 만점 }
+    \date{}
+    % Pygments definitions
+
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+
+
+
+    \begin{document}
+
+
+    \maketitle
+
+    \begin{center}
+      \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        문제 1 & 문제 2 & 문제 3 & 문제 4 & 문제 5 & 문제 6 & 문제 7 & 문제 8 & 문제 9 & 문제 10 & 합\quad 계 \\
+        \hline
+        & & & & & & & & & & \\
+        & & & & & & & & & & \\
+        \hline
+      \end{tabular}
+    \end{center}
+
+\vspace{.2cm}
+
+\section*{시험에서 사용하는 모듈 임포트 하기}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
+\PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
+\end{Verbatim}
+
+\section*{파이썬 기본 자료형}
+\label{uxd30cuxc774uxc36c-uxae30uxbcf8-uxc790uxb8ccuxd615}
+
+\subsection*{문제 1}\label{uxbb38uxc81c}
+
+실수(부동소수점)를 하나 입력받아, 그 숫자를 반지름으로 하는 원의 면적과
+둘레의 길이를 튜플로 리턴하는 함수 \texttt{circle\_radius}를 구현하는
+코드를 작성하라,
+
+\begin{verbatim}
+
+
+
+
+\end{verbatim}
+
+\section*{문자열 자료형}\label{uxbb38uxc790uxc5f4-uxc790uxb8ccuxd615}
+
+아래 사이트는 커피 콩의 현재 시세를 보여준다.
+
+\begin{verbatim}
+http://beans-r-us.appspot.com/prices.html
+\end{verbatim}
+
+위 사이트의 내용을 html 소스코드로 보면 다음과 같으며, 검색된 시간의
+커피콩의 가격은 \texttt{Current\ price\ of\ coffee\ beans} 문장이 담겨
+있는 줄에 명시되어 있다.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{<html><head><title>}\NormalTok{Welcome to the Beans'R'Us Pricing Page}\KeywordTok{</title>}
+\KeywordTok{<link}\OtherTok{ rel=}\StringTok{"stylesheet"}\OtherTok{ type=}\StringTok{"text/css"}\OtherTok{ href=}\StringTok{"beansrus.css"} \KeywordTok{/>}
+\KeywordTok{</head><body>}
+\KeywordTok{<h2>}\NormalTok{Welcome to the Beans'R'Us Pricing Page}\KeywordTok{</h2>}
+\KeywordTok{<p>}\NormalTok{Current price of coffee beans = }\KeywordTok{<strong>}\NormalTok{$5.94}\KeywordTok{</strong></p>}
+\KeywordTok{<p>}\NormalTok{Price valid for 15 minutes from Sun Sep 10 12:21:58 2017.}\KeywordTok{</p>}
+\KeywordTok{</body></html>}
+\end{Highlighting}
+\end{Shaded}
+
+위 소스코드를 웹페이지의 주소만 알고 있을 때 아래와 같이 읽어들일 수 있다.
+
+\begin{verbatim}
+page = urllib2.urlopen("http://beans-r-us.appspot.com/prices.html")
+text = page.read().decode("utf8")
+\end{verbatim}
+
+위 코드를 실행하면 \verb|text| 변수에 웹페이지의 전체 내용이 하나의 문자열로 저장된다.
+
+\subsection*{문제 2}\label{uxbb38uxc81c}
+
+\verb|text|에 저장된 문자열에서 가격 정보를 확인하는 방법을 코드를 이용하여 설명하라.
+
+
+\begin{verbatim}
+
+
+
+
+
+\end{verbatim}
+
+\iffalse
+견본답안:
+
+\begin{Verbatim}
+price_index = text.find(">$") + 2
+bean_price_str = text[price_index : price_index + 4]
+bean_price = float(bean_price_str)
+\end{Verbatim}
+\fi
+
+\iffalse
+\section*{오류 및 예외 처리}\label{uxc624uxb958-uxbc0f-uxc608uxc678-uxcc98uxb9ac}
+
+\subsection*{문제 3}
+\label{uxc544uxb798-uxcf54uxb4dcuxac00-uxd558uxb294-uxc77cuxc744-uxc124uxba85uxd558uxb77c.}
+
+아래 코드가 하는 일을 설명하라.
+\begin{verbatim}
+number_to_square = raw_input("A number to divide 100: ")
+
+try:
+    number = float(number_to_square)
+    print("100을 입력한 값으로 나눈 결과는", 100/number, "입니다.")
+except ZeroDivisionError:
+    raise ZeroDivisionError('0이 아닌 숫자를 입력하세요.')
+except ValueError:
+    raise ValueError('숫자를 입력하세요.')
+\end{verbatim}
+
+\begin{Verbatim}
+
+
+
+
+
+
+
+\end{Verbatim}
+\fi
+
+\iffalse
+\section*{리스트}\label{uxb9acuxc2a4uxd2b8}
+
+\subsection*{문제 4}\label{uxbb38uxc81c}
+
+아래 설명 중에서 리스트 자료형의 성질에 해당하는 항목을 모두 골라라.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  가변 자료형이다.
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  불변 자료형이다.
+\item
+  인덱스와 슬라이싱을 활용하여 항목의 내용을 확인하고 활용할 수 있다.
+\item
+  항목들이 임의의 자료형을 가질 수 있다.
+\item
+  리스트 길이에 제한이 있다.
+\item
+  신성정보 등 중요한 데이터를 보관할 때 사용한다.
+\end{itemize}
+
+\begin{verbatim}
+
+
+
+\end{verbatim}
+
+    견본답안: 1, 3, 4
+\fi
+
+\section*{사전}\label{uxc0acuxc804}
+
+\texttt{record\_list.txt} 파일은 여덟 명의 수영 선수의 50m 기록을 담고
+있다.
+
+\begin{verbatim}
+player1 21.09
+player2 20.32
+player3 21.81
+player4 22.97
+player5 23.29
+player6 22.09
+player7 21.20
+player8 22.16
+\end{verbatim}
+
+\subsection*{문제 3}\label{uxbb38uxc81c}
+
+아래코드가 하는 일을 설명하라.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{record_f }\OperatorTok{=} \BuiltInTok{open}\NormalTok{(}\StringTok{"record_list.txt"}\NormalTok{, }\StringTok{'r'}\NormalTok{)}
+\NormalTok{record }\OperatorTok{=}\NormalTok{ record_f.read().decode(}\StringTok{'utf8'}\NormalTok{).split(}\StringTok{'}\CharTok{\textbackslash{}n}\StringTok{'}\NormalTok{)}
+
+\NormalTok{record_dict }\OperatorTok{=}\NormalTok{ \{\}}
+
+\ControlFlowTok{for}\NormalTok{ line }\KeywordTok{in}\NormalTok{ record:}
+\NormalTok{    (player, p_record) }\OperatorTok{=}\NormalTok{ line.split()}
+\NormalTok{    record_dict[p_record] }\OperatorTok{=}\NormalTok{ player}
+
+\NormalTok{record_f.close()}
+
+\NormalTok{record_list }\OperatorTok{=}\NormalTok{ record_dict.keys()}
+\NormalTok{record_list.sort()}
+
+\end{Highlighting}
+\end{Shaded}
+
+
+\section*{튜플}\label{uxd29cuxd50c}
+
+\subsection*{문제 4}\label{uxbb38uxc81c}
+
+아래 설명 중에서 튜플 자료형의 성질에 해당하는 항목을 모두 골라라.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  가변 자료형이다.
+\item
+  불변 자료형이다.
+\item
+  인덱스와 슬라이싱을 활용하여 항목의 내용을 확인하고 활용할 수 있다.
+\item
+  항목들이 임의의 자료형을 가질 수 있다.
+\item
+  튜플 길이에 제한이 있다.
+\item
+  신성정보 등 중요한 데이터를 보관할 때 사용한다.
+\end{enumerate}
+
+\begin{verbatim}
+
+
+\end{verbatim}
+
+\iffalse
+견본답안: 2, 3, 4, 6
+\fi
+
+\section*{리스트
+조건제시법}\label{uxb9acuxc2a4uxd2b8-uxc870uxac74uxc81cuxc2dcuxbc95}
+
+    아래 코드는 0부터 1000 사이의 홀수들의 제곱의 리스트를 조건제시법으로
+생성한다
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{odd\PYZus{}1000} \PY{o}{=} \PY{p}{[}\PY{n}{x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{)} \PY{k}{if} \PY{n}{x} \PY{o}{\PYZpc{}} \PY{l+m+mi}{2} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{]}
+\end{Verbatim}
+
+\subsection*{문제 5}\label{uxbb38uxc81c}
+
+0부터 1000까지의 숫자들 중에서 홀수이면서 7의 배수인 숫자들의 리스트를
+조건제시법으로 생성하는 코드를 작성하라.
+
+\begin{verbatim}
+
+
+
+
+
+
+\end{verbatim}
+
+\iffalse
+모범답안:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{odd\PYZus{}3x7} \PY{o}{=} \PY{p}{[}\PY{n}{x} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{)} \PY{k}{if} \PY{n}{x} \PY{o}{\PYZpc{}} \PY{l+m+mi}{2} \PY{o}{==} \PY{l+m+mi}{1} \PY{o+ow}{and} \PY{n}{x} \PY{o}{\PYZpc{}} \PY{l+m+mi}{7} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{]}
+
+        \PY{c+c1}{\PYZsh{} 리스트의 처음 다섯 개 항목}
+        \PY{n}{odd\PYZus{}3x7}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:} [7, 21, 35, 49, 63]
+\end{Verbatim}
+
+\fi
+
+\subsection*{문제 6}\label{uxbb38uxc81c}
+
+0부터 1000까지의 숫자들 중에서 홀수이면서 7의 배수인 숫자들을 제곱하여
+1을 더한 값들의 리스트를 조건제시법으로 생성하는 코드를 작성하라. 힌트:
+아래와 같이 정의된 함수를 활용한다.
+
+\[f(x) = x^2 + 1\]
+
+\begin{Verbatim}
+
+
+
+
+
+
+
+\end{Verbatim}
+
+\iffalse
+견본답안:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{k}{def} \PY{n+nf}{square\PYZus{}plus1}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mi}{1}
+
+        \PY{n}{odd\PYZus{}3x7\PYZus{}spl} \PY{o}{=} \PY{p}{[}\PY{n}{square\PYZus{}plus1}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{odd\PYZus{}3x7}\PY{p}{]}
+        \PY{c+c1}{\PYZsh{} 리스트의 처음 다섯 개 항목}
+        \PY{n}{odd\PYZus{}3x7\PYZus{}spl}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:} [50, 442, 1226, 2402, 3970]
+\end{Verbatim}
+\fi
+
+\section*{csv 파일 읽어들이기} \label{csv-uxd30cuxc77c-uxc77duxc5b4uxb4e4uxc774uxae30}
+
+\texttt{\textquotesingle{}Seoul\_pop2.csv\textquotesingle{}} 파일에는
+아래 내용이 저장되어 있다.
+
+\begin{Verbatim}
+  ### 1949년부터 2010년 사이의 서울과 수도권 인구 증가율(%)
+  # 구간,서울,수도권
+
+  1949-1955,9.12,-5.83
+  1955-1960,55.88,32.22
+  1960-1966,55.12,32.76
+  1966-1970,45.66,28.76
+  1970-1975,24.51,22.93
+  1975-1980,21.38,21.69
+  1980-1985,15.27,18.99
+  1985-1990,10.15,17.53
+  1990-1995,-3.64,8.54
+  1995-2000,-3.55,5.45
+  2000-2005,-0.93,6.41
+  2005-2010,-1.34,3.71
+\end{Verbatim}
+
+확장자가 csv인 파일은 데이터를 저장하기 위해 주로 사용한다. csv는
+Comma-Separated Values의 줄임말로 데이터가 쉼표(콤마)로 구분되어
+정리되어 있는 파일을 의미한다.
+csv 파일을 읽어드리는 방법은 \texttt{csv} 모듈의 \texttt{reader()}
+함수를 활용하면 매우 쉽다. \texttt{reader()} 함수의 리턴값은 csv 파일에
+저장된 내용을 줄 단위로, 쉼표 단위로 끊어서 2차원 리스트이다.
+예를 들어, 아래 코드는 언급된 파일에 저장된 내용의 각 줄을 출력해준다.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{csv}
+\PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Seoul\PYZus{}pop2.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+    \PY{n}{reader} \PY{o}{=} \PY{n}{csv}\PY{o}{.}\PY{n}{reader}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+    \PY{k}{for} \PY{n}{row} \PY{o+ow}{in} \PY{n}{reader}\PY{p}{:}
+        \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{row}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0} \PY{o+ow}{or} \PY{n}{row}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+            \PY{k}{continue}
+        \PY{k}{else}\PY{p}{:}
+            \PY{k}{print}\PY{p}{(}\PY{n}{row}\PY{p}{)}
+\end{Verbatim}
+
+\subsection*{문제 7}\label{uxbb38uxc81c}
+
+위 코드에서 5번 째 줄을 아래와 같이 하면 오류 발생한다.
+
+\begin{verbatim}
+if row[0][0] == '#' or len(row) == 0:
+\end{verbatim}
+
+이유를 간단하게 설명하라.
+
+\begin{verbatim}
+
+
+
+\end{verbatim}
+
+\section*{넘파이 활용 기초 1} \label{uxb118uxd30cuxc774-uxd65cuxc6a9-uxae30uxcd08-1}
+
+넘파이 어레이를 생성하는 방법은 몇 개의 기본적인 함수를 이용하면 된다.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{np.arange()}
+\item
+  \texttt{np.zeros()}
+\item
+  \texttt{np.ones()}
+\item
+  \texttt{np.diag()}
+\end{itemize}
+
+\iffalse
+예제:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} array([3, 6, 9])
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:} array([[ 0.,  0.,  0.],
+               [ 0.,  0.,  0.]])
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{np}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:} array([ 1.,  1.])
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{np}\PY{o}{.}\PY{n}{diag}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:} array([[1, 0, 0, 0],
+                [0, 2, 0, 0],
+                [0, 0, 3, 0],
+                [0, 0, 0, 4]])
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{np}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{2}
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:} array([[ 2.,  2.,  2.],
+                [ 2.,  2.,  2.],
+                [ 2.,  2.,  2.]])
+\end{Verbatim}
+\fi
+
+\subsection*{문제 8}\label{uxbb38uxc81c}
+
+아래 모양의 어레이를 생성하는 코드를 작성하라. 단, 언급된 네 개의
+함수들만 사용해야 하며, 수동으로 생성된 리스트나 어레이는 허용되지
+않는다.
+
+\[\left [ \begin{matrix} 2 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 2 \end{matrix} \right ]\]
+
+\begin{verbatim}
+
+
+
+\end{verbatim}
+
+\iffalse
+견본답안:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{np}\PY{o}{.}\PY{n}{diag}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} array([[ 2.,  0.,  0.],
+                [ 0.,  2.,  0.],
+                [ 0.,  0.,  2.]])
+\end{Verbatim}
+\fi
+
+\iffalse
+\subsection*{문제}\label{uxbb38uxc81c}
+
+아래 모양의 어레이를 생성하는 코드를 작성하라. 단, 언급된 네 개의 함수만
+사용해야 하며, 수동으로 생성된 리스트나 어레이는 허용되지 않는다.
+
+\[\left [ \begin{matrix} 2 & 0 & 0 \\ 0 & 4 & 0 \\ 0 & 0 & 6 \end{matrix} \right ]\]
+
+\begin{verbatim}
+
+
+
+
+\end{verbatim}
+
+견본답안:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{np}\PY{o}{.}\PY{n}{diag}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:} array([[2, 0, 0],
+                [0, 4, 0],
+                [0, 0, 6]])
+\end{Verbatim}
+
+\section*{\texorpdfstring{넘파이의 \texttt{linspace()} 함수
+활용}{넘파이의 linspace() 함수 활용}}\label{uxb118uxd30cuxc774uxc758-linspace-uxd568uxc218-uxd65cuxc6a9}
+
+    numpy 모듈의 \texttt{linspace()} 함수는 지정된 구간을 정해진 크기로
+일정하게 쪼개는 어래이를 생성한다. 예를 들어, 0부터 3사이의 구간을
+균등하게 30개로 쪼개고자 하면 아래와 같이 실행하면 된다.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{xs} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{30}\PY{p}{)}
+         \PY{n}{xs}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}14}]:} array([ 0.        ,  0.10344828,  0.20689655,  0.31034483,  0.4137931 ,
+                 0.51724138,  0.62068966,  0.72413793,  0.82758621,  0.93103448,
+                 1.03448276,  1.13793103,  1.24137931,  1.34482759,  1.44827586,
+                 1.55172414,  1.65517241,  1.75862069,  1.86206897,  1.96551724,
+                 2.06896552,  2.17241379,  2.27586207,  2.37931034,  2.48275862,
+                 2.5862069 ,  2.68965517,  2.79310345,  2.89655172,  3.        ])
+\end{Verbatim}
+
+    \subsection*{문제}\label{uxbb38uxc81c}
+
+0부터 1사이의 구간을 균등하게 10개로 쪼개어 각 항목을 제곱하는 코드를
+작성하라.
+
+    \begin{verbatim}
+
+
+
+.
+\end{verbatim}
+
+    견본답안:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}15}]:} array([ 0.        ,  0.01234568,  0.04938272,  0.11111111,  0.19753086,
+                 0.30864198,  0.44444444,  0.60493827,  0.79012346,  1.        ])
+\end{Verbatim}
+\fi
+
+\section*{넘파이 활용 기초
+2}\label{uxb118uxd30cuxc774-uxd65cuxc6a9-uxae30uxcd08-2}
+
+    \texttt{population.txt} 파일은 1900년부터 1920년까지 캐나다 북부지역에서
+서식한 산토끼(hare)와 스라소니(lynx)의 숫자, 그리고 채소인
+당근(carrot)의 재배숫자를 아래 내용으로 순수 텍스트 데이터로 담고 있다.
+
+\begin{verbatim}
+# year  hare    lynx     carrot
+1900    30e3    4e3      48300
+1901    47.2e3  6.1e3    48200
+1902    70.2e3  9.8e3    41500
+1903    77.4e3  35.2e3   38200
+1904    36.3e3  59.4e3   40600
+1905    20.6e3  41.7e3   39800
+1906    18.1e3  19e3     38600
+1907    21.4e3  13e3     42300
+1908    22e3    8.3e3    44500
+1909    25.4e3  9.1e3    42100
+1910    27.1e3  7.4e3    46000
+1911    40.3e3  8e3      46800
+1912    57e3    12.3e3   43800
+1913    76.6e3  19.5e3   40900
+1914    52.3e3  45.7e3   39400
+1915    19.5e3  51.1e3   39000
+1916    11.2e3  29.7e3   36700
+1917    7.6e3   15.8e3   41800
+1918    14.6e3  9.7e3    43300
+1919    16.2e3  10.1e3   41300
+1920    24.7e3  8.6e3    47300
+\end{verbatim}
+
+
+    아래 코드는 연도, 토끼 개체수, 스라소리 개체수, 당근 개체수를 따로따로
+떼어 내어 각각 어레이로 변환하여 \texttt{year}, \texttt{hares},
+\texttt{lynxes}, \texttt{carrots} 변수에 저장하는 코드이다.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{data} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{loadtxt}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{populations.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{year}\PY{p}{,} \PY{n}{hares}\PY{p}{,} \PY{n}{lynxes}\PY{p}{,} \PY{n}{carrots} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{T}
+\end{Verbatim}
+
+\subsection*{문제 9}\label{uxbb38uxc81c}
+
+위 코드에서 \texttt{data.T}에 대해 간단하게 설명하라.
+
+\begin{verbatim}
+
+
+
+\end{verbatim}
+
+    아래 코드는 토끼, 스라소니, 당근 각각의 개체수의 연도별 변화를
+선그래프로 보여주도록 하는 코드이다.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{plt}\PY{o}{.}\PY{n}{axes}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{0.2}\PY{p}{,} \PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mf}{0.8}\PY{p}{]}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{year}\PY{p}{,} \PY{n}{hares}\PY{p}{,} \PY{n}{year}\PY{p}{,} \PY{n}{lynxes}\PY{p}{,} \PY{n}{year}\PY{p}{,} \PY{n}{carrots}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hare}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Lynx}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Carrot}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{p}{(}\PY{l+m+mf}{1.05}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+\begin{center}
+\adjustimage{max size={0.4\linewidth}{0.4\paperheight}}{output_73_1.png}
+\end{center}
+
+\iffalse
+\subsection*{문제}\label{uxbb38uxc81c}
+
+위 코드에서 사용된
+\texttt{plt.plot(year,\ hares,\ year,\ lynxes,\ year,\ carrots)} 를
+간단하게 설명하라.
+
+\begin{verbatim}
+
+
+\end{verbatim}
+\fi
+
+\subsection*{문제 10}\label{uxbb38uxc81c}
+
+산토끼, 스라소니, 당근의 예제에서 1900년부터 1921년 사이에 개체별
+개체수의 변화에 대해 어떤 분석을 할 수 있는지 그래프를 이용하여 간단하게
+설명하라.
+
+\begin{verbatim}
+
+
+
+
+\end{verbatim}
+
+
+    % Add a bibliography block to the postdoc
+
+
+    \end{document}
