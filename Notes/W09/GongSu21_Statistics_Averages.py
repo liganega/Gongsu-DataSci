@@ -72,7 +72,7 @@ from __future__ import print_function, division
 # 
 # 오늘 사용할 데이터는 다음과 같다.
 # 
-# * 주별 담배(식물) 도매가격 및 판매일자: Weed_price.csv
+# * 미국 51개 주(State)별 담배(식물) 도매가격 및 판매일자: Weed_price.csv
 # 
 # 아래 그림은 미국의 주별 담배(식물) 판매 데이터를 담은 Weed_Price.csv 파일를 엑셀로 읽었을 때의 일부를 보여준다.
 # 실제 데이터량은 22899개이며, 아래 그림에는 5개의 데이터만을 보여주고 있다.
@@ -193,11 +193,11 @@ prices_pd.sort_values(['State', 'date'], inplace=True)
 
 # #### 결측치 채우기
 # 
-# 평균을 구하기 위해서는 결측치(누락된 데이터)가 없애고자 한다.
-# 여기서는 이전 줄의 데이터를 이용하여 채우는 방식(method='ffill') 방식을 이용한다.
+# 평균을 구하기 위해서는 결측치(누락된 데이터)가 없어야 한다.
+# 여기서는 이전 줄의 데이터를 이용하여 채우는 방식(method='ffill')을 이용한다.
 # 
 # **주의:** 앞서 정렬을 먼저 한 이유는, 결측치가 있을 경우 가능하면 동일한 주(State), 
-# 동일한 시점에서 이전에 거래된 가격을 사용하고자 함이다.
+# 비슷한 시점에서 거래된 가격을 사용하고자 함이다.
 
 # In[10]:
 
@@ -212,6 +212,7 @@ prices_pd.head()
 
 
 # 정렬된 데이터의 끝 부분은 아래와 같이 요밍(Wyoming) 주의 데이터만 날짜별로 순서대로 보인다.
+# 이제 결측치가 더 이상 존재하지 않는다.
 
 # In[12]:
 
@@ -231,9 +232,9 @@ prices_pd.tail()
 # 
 # $$\text{평균값}(\mu) = \frac{\Sigma\, X}{n}$$
 
-# 마스크 인덱스를 이용하여 캘리포니아 주의 데이터만 추출한다.
+# 먼저 마스크 인덱스를 이용하여 캘리포니아 주의 데이터만 추출해야 한다.
 
-# In[13]:
+# In[36]:
 
 california_pd = prices_pd[prices_pd.State == "California"].copy(True)
 
@@ -242,10 +243,12 @@ california_pd = prices_pd[prices_pd.State == "California"].copy(True)
 
 # In[14]:
 
-california_pd.head()
+california_pd.head(20)
 
 
 # HighQ 열 목록에 있는 값들의 총합을 구해보자.
+# 
+# **주의:** `sum()` 메소드 활용을 기억한다.
 
 # In[15]:
 
@@ -254,6 +257,8 @@ ca_sum
 
 
 # HighQ 열 목록에 있는 값들의 개수를 확인해보자.
+# 
+# **주의:** `count()` 메소드 활용을 기억한다.
 
 # In[16]:
 
@@ -295,6 +300,11 @@ ca_highq_pd.head()
 
 
 # 인덱스 로케이션 함수인 `iloc` 함수를 활용한다.
+# 
+# **주의:** `iloc` 메소드는 인덱스 번호를 사용한다. 
+# 위 표에서 보여주는 인덱스 번호는 Weed_Price.csv 파일을 처음 불러왔을 때 사용된 인덱스 번호이다.
+# 하지만 ca_high_pd 에서는 참고사항으로 사용될 뿐이며, `iloc` 함수에 인자로 들어가는 인덱스는 다시 0부터 세는 것으로 시작한다.
+# 따라서 아래 코드처럼 기존의 참고용 인덱스를 사용하면 옳은 답을 구할 수 없다.
 
 # In[20]:
 
@@ -307,6 +317,8 @@ print("캘리포니아에서 거래된 HighQ 도매가의 중앙값은", ca_medi
 # 캘리포니아 주에서 거래된 HighQ의 담배가격의 최빈값을 구하자.
 # 
 # * 최빈값 = 가장 자주 발생한 데이터
+# 
+# **주의:** `value_counts()` 메소드 활용을 기억한다.
 
 # In[21]:
 
@@ -324,30 +336,40 @@ print("캘리포니아 주에서 가장 빈번하게 거래된 HighQ 도매가�
 
 # In[22]:
 
-california_pd.mean().HighQ
+california_pd.mean()
 
 
 # In[23]:
 
-california_pd.median().HighQ
+california_pd.mean().HighQ
 
 
 # In[24]:
 
-california_pd.mode().HighQ
+california_pd.median()
 
 
 # In[25]:
 
-california_pd.HighQ.mean()
+california_pd.mode()
 
 
 # In[26]:
 
-california_pd.HighQ.median()
+california_pd.mode().HighQ
 
 
 # In[27]:
+
+california_pd.HighQ.mean()
+
+
+# In[28]:
+
+california_pd.HighQ.median()
+
+
+# In[29]:
 
 california_pd.HighQ.mode()
 
@@ -364,7 +386,7 @@ california_pd.HighQ.mode()
 # * sum 변수: 2014년도에 거래된 도매가의 총합을 담는다.
 # * count 변수: 2014년도의 거래 횟수를 담는다.
 
-# In[28]:
+# In[30]:
 
 sum = 0
 count = 0
@@ -380,7 +402,7 @@ sum/count
 # 아래와 같은 방식을 이용하여 인덱스 정보를 구하여 슬라이싱 기능을 활용할 수도 있다.
 # 슬라이싱을 활용하여 연도별 평균을 구하는 방식은 본문 내용과 동일한 방식을 따른다.
 
-# In[29]:
+# In[31]:
 
 years = np.arange(2013, 2016)
 year_starts = [0]
@@ -404,22 +426,22 @@ year_starts
 # 
 # * 369번줄부터 2015년도 거래가 표시된다.
 
-# In[30]:
+# In[32]:
 
 california_pd.iloc[4]
 
 
-# In[31]:
+# In[33]:
 
 california_pd.iloc[5]
 
 
-# In[32]:
+# In[34]:
 
 california_pd.iloc[368]
 
 
-# In[33]:
+# In[35]:
 
 california_pd.iloc[369]
 
