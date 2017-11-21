@@ -25,7 +25,7 @@ from __future__ import print_function, division
 
 # ## 오늘의 주요 예제
 
-# 미국에서 판매되는 담배(식물)의 도매가격 데이터를 분석하여, 거래된 도매가의 평균을 구한다.
+# 미국에서 거래되는 담배(식물)의 도매가격 데이터를 분석하여, 거래된 도매가의 평균을 구한다.
 # 
 # * 평균값(Mean)
 # * 중앙값(Median)
@@ -310,7 +310,7 @@ ca_highq_pd.head()
 # In[20]:
 
 # 캘리포니아에서 거래된 상품(HighQ) 담배(식물) 도매가의 중앙값
-ca_median = ca_highq_pd.HighQ.iloc[int((ca_count)/ 2)]
+ca_median = ca_highq_pd.HighQ.iloc[int((ca_count-1)/ 2)]
 ca_median
 
 
