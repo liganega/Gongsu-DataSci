@@ -3,7 +3,7 @@
 
 # # 모집단 분산 점추정
 
-# In[2]:
+# In[1]:
 
 from __future__ import print_function, division
 
@@ -15,17 +15,17 @@ from __future__ import print_function, division
 # 
 # **주의:** GongSu21_Statistics_Averages.py 파일이 동일한 디렉토리에 있어야 한다.
 
-# In[3]:
+# In[2]:
 
 from GongSu21_Statistics_Averages import *
 
 
-# ## 오늘의 주요 내용
+# ## 주요 내용
 
 # * 모집단과 표본
 # * 모집단 분산의 점추정
 
-# ## 오늘의 주요 예제
+# ## 주요 예제
 
 # 21장에서 다룬 미국의 51개 주에서 거래되는 담배(식물)의 도매가격 데이터를 보다 상세히 분석한다. 
 # 
@@ -62,7 +62,7 @@ from GongSu21_Statistics_Averages import *
 # 
 # 따라서 아래에서 볼 수 있듯이 예를 들어, prices_pd의 첫 다섯 줄의 내용은 알파벳순으로 가장 빠른 이름을 가진 알라바마(Alabama) 주에서 거래된 데이터 중에서 가정 먼저 거래된 5개의 거래내용을 담고 있다.
 
-# In[4]:
+# In[3]:
 
 prices_pd.head()
 
@@ -105,7 +105,7 @@ prices_pd.head()
 # 
 # **주의:** 캘리포니아 주에서 거래된 상품(HighQ) 담배(식물)의 도매가의 평균값은 `ca_mean`으로 이미 계산되었다.
 
-# In[28]:
+# In[4]:
 
 california_pd['HighQ_dev'] = (california_pd['HighQ'] - ca_mean) ** 2
 california_pd.head()
@@ -115,7 +115,7 @@ california_pd.head()
 # 
 # **주의:** 표본의 크기는 `ca_count`이다.
 
-# In[8]:
+# In[5]:
 
 ca_HighQ_variance = california_pd.HighQ_dev.sum() / (ca_count - 1)
 ca_HighQ_variance
@@ -129,7 +129,7 @@ ca_HighQ_variance
 # 
 # 모집단 분산의 점추정으로 얻은 값에다가 루트를 씌우면 된다.
 
-# In[9]:
+# In[6]:
 
 # 캘리포니아에서 거래된 상품(HighQ) 담배(식물) 도매가의 표준편차
 ca_HighQ_SD = np.sqrt(ca_HighQ_variance)
