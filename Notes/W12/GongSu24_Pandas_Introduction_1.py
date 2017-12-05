@@ -67,8 +67,8 @@ import numpy as np
 
 # In[2]:
 
-ser1 = Series([4, -7, -5, 3])
-ser1
+s1 = Series([4, -7, -5, 3])
+s1
 
 
 # index를 지정하지 않으면 어레이 인덱싱에서 사용되는 숫자가 자동으로 사용된다.
@@ -81,12 +81,12 @@ ser1
 
 # In[3]:
 
-ser1.values
+s1.values
 
 
 # In[4]:
 
-ser1.index
+s1.index
 
 
 # #### index 지정
@@ -95,23 +95,23 @@ ser1.index
 
 # In[5]:
 
-ser2 = Series([4, -7, -5, 3], index=['a', 'b', 'c', 'd'])
-ser2
+s2 = Series([4, -7, -5, 3], index=['a', 'b', 'c', 'd'])
+s2
 
 
 # index를 확인하면 기본 인덱스와 다른 자료형이 사용되었음을 확인할 수 있다.
 
 # In[6]:
 
-ser2.index
+s2.index
 
 
 # 색인은 대입을 통해서도 변경할 수 있다.
 
 # In[7]:
 
-ser2.index = ['A', 'B', 'C', 'D']
-ser2
+s2.index = ['A', 'B', 'C', 'D']
+s2
 
 
 # #### 인덱싱
@@ -120,7 +120,7 @@ ser2
 
 # In[8]:
 
-ser2['C']
+s2['C']
 
 
 # 여러 개의 색인을 활용하여 인덱싱을 하면 시리즈 값이 리턴된다.
@@ -130,8 +130,8 @@ ser2['C']
 
 # In[9]:
 
-ser3 = ser2[['D', 'A', 'B']]
-ser3
+s3 = s2[['D', 'A', 'B']]
+s3
 
 
 # #### 마스크 인덱싱
@@ -140,26 +140,28 @@ ser3
 
 # In[10]:
 
-mask = ser2 > 0
+mask = s2 > 0
 mask
 
 
 # In[11]:
 
-ser2[mask]
+s2[mask]
 
 
-# ### 시리즈 연산
+# ### 시리즈 기본 연산
 # 
-# 시리즈 연산은 어레이의 연산과 동일하다.
+# 시리즈 연산은 기본적으로 어레이의 연산과 동일하다.
 # 
 # * 기본적으로 항목별로 연산이 작동한다.
 # * index 는 기본적으로 변하지 않는다.
 # * 두 시리즈의 합은 인덱스의 존재 여부에 많은 영향을 받는다.
+# 
+# 시리즈 관련 보다 다양한 연산 및 기능에 대해서는 추후에 자세히 다룰 예정이다.
 
 # In[12]:
 
-ser2 * 2
+s2 * 2
 
 
 # In[13]:
@@ -170,7 +172,7 @@ def f(x):
 
 # In[14]:
 
-f(ser2)
+f(s2)
 
 
 # #### 특정 색인 사용 여부 판단
@@ -179,12 +181,12 @@ f(ser2)
 
 # In[15]:
 
-'B' in ser2
+'B' in s2
 
 
 # In[16]:
 
-'one' in ser2
+'one' in s2
 
 
 # ### 시리즈 생성: 사전 활용
@@ -195,8 +197,8 @@ f(ser2)
 # In[17]:
 
 dic1 = {'Oh':2300, 'Ts': 1700, 'Or':1600, 'Ah':4500}
-ser4  = Series(dic1)
-ser4
+s4  = Series(dic1)
+s4
 
 
 # 새로운 index를 사용할 경우, 기존의 사전에 사용되지 않은 key에는 값이 누락되었다는 의미로 NaN이 사용된다.
@@ -206,8 +208,8 @@ ser4
 # In[18]:
 
 keys1 = ['Ca', 'Oh', 'Or', 'Ts', 'Gg']
-ser5 = Series(dic1, index=keys1)
-ser5
+s5 = Series(dic1, index=keys1)
+s5
 
 
 # #### 널(null) 값 확인 함수
@@ -218,12 +220,12 @@ ser5
 
 # In[19]:
 
-pd.isnull(ser5)
+pd.isnull(s5)
 
 
 # In[20]:
 
-pd.notnull(ser5)
+pd.notnull(s5)
 
 
 # ### 시리즈의 합
@@ -235,17 +237,17 @@ pd.notnull(ser5)
 
 # In[21]:
 
-ser4
+s4
 
 
 # In[22]:
 
-ser5
+s5
 
 
 # In[23]:
 
-ser4 + ser5
+s4 + s5
 
 
 # ### name 속성
@@ -256,21 +258,21 @@ ser4 + ser5
 
 # In[24]:
 
-ser5.name = 'Population'
+s5.name = 'Population'
 
 
 # #### index 의 name 속성 설정
 
 # In[25]:
 
-ser5.index.name = 'State'
+s5.index.name = 'State'
 
 
-# 이제 ser5의 name 속성과 ser5.index의 속성이 설정되었음을 아래와 같이 확인할 수 있다.
+# 이제 s5의 name 속성과 s5.index의 속성이 설정되었음을 아래와 같이 확인할 수 있다.
 
 # In[26]:
 
-ser5
+s5
 
 
 # ## 데이터프레임(DataFrame) 자료형
@@ -304,8 +306,8 @@ data = {'state' : ['Ohio', 'Ohio', 'Ohio', 'Nevada', 'Nevada'],        'year' : 
 
 # In[29]:
 
-dframe = DataFrame(data)
-dframe
+df = DataFrame(data)
+df
 
 
 # 사전 자료형을 이용하였기 때문에 시리즈의 순서가 임의로 지정되었다. 
@@ -320,8 +322,8 @@ DataFrame(data, columns=['year', 'state', 'pop'])
 
 # In[31]:
 
-dframe2 = DataFrame(data, index=['one','two','three','four','five'])
-dframe2
+df2 = DataFrame(data, index=['one','two','three','four','five'])
+df2
 
 
 # ### 데이터프레임 생성: 데이터프레임 활용
@@ -330,8 +332,8 @@ dframe2
 
 # In[32]:
 
-dframe3 = DataFrame(dframe2)
-dframe3
+df3 = DataFrame(df2)
+df3
 
 
 # 아래 코드는 기존의 데이터프레임에 컬럼을 확장하는 방식으로 새로운 데이터프레임을 생성한다.
@@ -340,15 +342,15 @@ dframe3
 
 # In[33]:
 
-dframe4 = DataFrame(dframe3, columns=['year', 'state', 'pop', 'debt'])
-dframe4
+df4 = DataFrame(df3, columns=['year', 'state', 'pop', 'debt'])
+df4
 
 
 # 컬럼의 이름의 목록은 columns 속성에 저장되어 있다.
 
 # In[34]:
 
-dframe4.columns
+df4.columns
 
 
 # ### 칼럼별 인덱싱
@@ -357,21 +359,21 @@ dframe4.columns
 
 # In[35]:
 
-dframe4['year']
+df4['year']
 
 
 # 각각의 컬럼이 Series 자료형임을 확인할 수 있다.
 
 # In[36]:
 
-type(dframe4['year'])
+type(df4['year'])
 
 
 # * 각각의 컬럼의 이름(name)이 속성으로 지정되어 있기 때문에 속성으로 확인할 수도 있다.
 
 # In[37]:
 
-dframe4.year
+df4.year
 
 
 # #### 컬럼 값 지정하기
@@ -381,23 +383,23 @@ dframe4.year
 
 # In[38]:
 
-dframe4['debt'] = 16.5
-dframe4
+df4['debt'] = 16.5
+df4
 
 
 # 아래 코드는 index의 길이와 동일한 크기의 어레이나 리스트를 활용하는 방법이다.
 
 # In[39]:
 
-dframe4['debt'] = np.arange(5.)
-dframe4
+df4['debt'] = np.arange(5.)
+df4
 
 
 # **주의:** 정수 5 대신에 부동소수점 5.를 사용하는 이유는 debt 컬럼의 자료형을 float로 설정하기 위함이다.
 
 # In[40]:
 
-dframe4.dtypes
+df4.dtypes
 
 
 # 특정 컬럼의 데이터를 Series를 이용하여 지정할 때는 DataFrame의 색인에 따라 값이 대입되며 없는 색인에는 값이 대입되지 않는다.
@@ -410,8 +412,8 @@ val
 
 # In[42]:
 
-dframe4['debt'] = val
-dframe4
+df4['debt'] = val
+df4
 
 
 # ### 행별 인덱싱
@@ -425,21 +427,21 @@ dframe4
 
 # In[43]:
 
-dframe4.loc['three']
+df4.loc['three']
 
 
 # loc의 리턴값은 시리즈이다. 
 
 # In[44]:
 
-type(dframe4.loc['three'])
+type(df4.loc['three'])
 
 
 # 컬럼의 이름이 index로 사용되었음에 주의한다.
 
 # In[45]:
 
-dframe4.loc['three'].index
+df4.loc['three'].index
 
 
 # #### 행별 값 지정
@@ -448,8 +450,8 @@ dframe4.loc['three'].index
 
 # In[46]:
 
-dframe4.loc['three'] = [2017, 'GG', 2.3, 3.0]
-dframe4
+df4.loc['three'] = [2017, 'GG', 2.3, 3.0]
+df4
 
 
 # ### 컬럼 추가
@@ -460,15 +462,15 @@ dframe4
 
 # In[47]:
 
-dframe4['eastern']= (dframe4.state == 'Ohio')
-dframe4
+df4['eastern']= (df4.state == 'Ohio')
+df4
 
 
 # 참고: `state == 'ohio'`는 시리즈를 생성한다.
 
 # In[48]:
 
-dframe4.state == 'Ohio'
+df4.state == 'Ohio'
 
 
 # ### 컬럼 삭제
@@ -477,8 +479,8 @@ dframe4.state == 'Ohio'
 
 # In[49]:
 
-del dframe4['eastern']
-dframe4
+del df4['eastern']
+df4
 
 
 # ### 인덱싱과 뷰 방식
@@ -489,36 +491,36 @@ dframe4
 
 # In[50]:
 
-dframe4
+df4
 
 
 # In[51]:
 
-debt_col = dframe4.debt
+debt_col = df4.debt
 debt_col
 
 
 # 아래와 같이 인덱싱을 사용하여 값을 변경할 수는 있지만 경고문이 뜬다.
 # 경고문은 슬라이싱(인덱싱) 결과에 수정을 가할 때 조심해야 한다는 내용이다. 
 
-# In[72]:
+# In[52]:
 
 debt_col.loc['one'] = 1.2
 
 
-# 하지만 값이 기존의 dframe4까지 영향을 주는 것을 아래와 같이 확인할 수 있다.
+# 하지만 값이 기존의 df4까지 영향을 주는 것을 아래와 같이 확인할 수 있다.
 # 위 경고문의 내용처럼 뷰 방식으로 작동하는 경우 데이터를 수정할 때 매우 조심해야 한다.
 
 # In[53]:
 
-dframe4
+df4
 
 
 # `copy()` 메소드를 사용하면 앞서 설명한 문제는 발생하지 않는다. 
 
 # In[54]:
 
-debt_col_copy = dframe4.debt.copy()
+debt_col_copy = df4.debt.copy()
 
 
 # `debt_col_copy`의 데이터를 수정하자. 
@@ -529,18 +531,18 @@ debt_col_copy = dframe4.debt.copy()
 debt_col_copy.loc['one'] = -1.2
 
 
-# 또한 기존의 `dframe4`가 변경되지 않았음을 확인할 수 있다.
+# 또한 기존의 `df4`가 변경되지 않았음을 확인할 수 있다.
 
-# In[57]:
+# In[56]:
 
-dframe4
+df4
 
 
 # ### 데이터프레임 생성: 중첩 사전 활용
 # 
 # * 중첩 사전을 이용하여 데이터플레임을 생성할 수 있다.
 
-# In[58]:
+# In[57]:
 
 pop = {'Nevada' : {2001: 2.4, 2002: 2.9},
        'Ohio': {2000: 1.5, 2001: 1.7, 2002: 3.6}}
@@ -548,35 +550,35 @@ pop = {'Nevada' : {2001: 2.4, 2002: 2.9},
 
 # 바깥에 있는 사전의 키 값이 칼럼이 되고 안에 있는 키는 인덱스가 된다.
 
-# In[59]:
+# In[58]:
 
-dframe5 = DataFrame(pop)
-dframe5
+df5 = DataFrame(pop)
+df5
 
 
 # * 색인을 직접 지정한다면 지정된 색인으로 DataFrame을 생성한다.
 
-# In[60]:
+# In[59]:
 
 DataFrame(pop, index=[2001, 2002, 2003])
 
 
 # * Series 객체를 담고 있는 사전 데이터도 같은 방식으로 취급된다.
 
+# In[60]:
+
+df5['Ohio'][:-1]
+
+
 # In[61]:
 
-dframe5['Ohio'][:-1]
+df5['Nevada'][:2]
 
 
 # In[62]:
 
-dframe5['Nevada'][:2]
-
-
-# In[63]:
-
-pdata = {'ohio' : dframe5['Ohio'][:-1],
-         'Nevada': dframe5['Nevada'][:2]}
+pdata = {'ohio' : df5['Ohio'][:-1],
+         'Nevada': df5['Nevada'][:2]}
 DataFrame(pdata)
 
 
@@ -589,47 +591,47 @@ DataFrame(pdata)
 # 전치행렬이 뷰 방식을 따른다. 
 # 따라서 기본적으로 copy() 함수를 사용하여 기존 데이터와의 관계를 끊는 게 좋다.
 
+# In[63]:
+
+df5T = df5.T.copy()
+df5T
+
+
 # In[64]:
 
-dframe5T = dframe5.T.copy()
-dframe5T
+df5['Nevada'].iloc[0] = 1.0
+df5
 
 
 # In[65]:
 
-dframe5['Nevada'].iloc[0] = 1.0
-dframe5
-
-
-# In[66]:
-
-dframe5T
+df5T
 
 
 # ### name 속성
 # 
 # name 속성을 이용하여 컬럼과 index에 이름을 지정할 수 있다.
 
-# In[68]:
+# In[66]:
 
-dframe5.index.name = 'year'
-dframe5.columns.name = 'state'
-dframe5
+df5.index.name = 'year'
+df5.columns.name = 'state'
+df5
 
 
 # ### 값(values) 속성
 # 
 # Series와 유사하게 values 속성은 DataFrame에 저장된 데이터를 2차원 배열로 반환한다.
 
-# In[69]:
+# In[67]:
 
-dframe5.values
+df5.values
 
 
 # DataFrame의 칼럼에 서로 다른 dtype이 있다면 모든 칼럼을 수용하기 위해 object라는 dtype이 선택된다.
 # object를 만능 자료형이라 생각하면 편하다. 실제로는 4개의 포인터로 구성된다.
 
-# In[70]:
+# In[68]:
 
-dframe3.values
+df3.values
 
