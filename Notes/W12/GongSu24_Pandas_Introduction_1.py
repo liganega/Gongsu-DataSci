@@ -7,7 +7,7 @@
 # 특히, 데이터프레임(DataFrame) 자료형 클래스는 데이터 분석을 위한 다양한 기능을 제공한다.
 # 데이터프레임 자료형의 기본 특성은 다음과 같다.
 # 
-# * 스프레드쉬트라고 불리는 엑셀 파일에 담긴 테이블을 모방하는 자료형이다.
+# * 스프레드시트라고 불리는 엑셀 파일에 담긴 테이블을 모방하는 자료형이다.
 # * 엑셀에서 제공하는 다양한 기능을 기본 함수(메소드)로 제공한다.
 # * 인덱싱, 슬라이싱 기능은 넘파이 모듈의 2차원 어레이와 기본적으로 유사하게 작동한다.
 # * SQL이 데이터베이스를 다루는 기능과 유사한 기능 제공
@@ -48,10 +48,11 @@ import pandas as pd
 import numpy as np
 
 
-# pd는 pandas를 지칭하며 Series와 DataFrame은 로컬 네임스페리스로 import하는 것이 편해서 이렇게 사용함.
+# pd는 pandas를 지칭하며 Series와 DataFrame은 원래 pandas 모듈에서 정의된 함수들이어서 기본적으로 
+# pd.Series() 또는 pd.DataFrame() 형식으로 호출해야 한다.
+# 하지만 많이 사용되는 함수들이기에 두 함수를 따로 임포트 하면 `"pd."` 부분은 생략이 가능하다.
+# 즉, 로컬 네임스페이스로 import하는 것이 편해서 이렇게 사용한다.
 
-# ## pandas 자료 구조 소개
-# 
 # pandas에 대해서 알아보려면 Series와 DataFrame, 이 두 가지 자료 구조에 익숙해져야 한다.
 
 # ## 시리즈(Series) 자료형
@@ -209,7 +210,7 @@ ser5 = Series(dic1, index=keys1)
 ser5
 
 
-# #### 널값 확인 함수
+# #### 널(null) 값 확인 함수
 # 
 # `isnull`과 `notnull` 함수는 누락된 데이터의 위치를 확인할 때 사용한다.
 # 
@@ -478,4 +479,157 @@ dframe4.state == 'Ohio'
 
 del dframe4['eastern']
 dframe4
+
+
+# ### 인덱싱과 뷰 방식
+
+# DataFrame의 색인을 이용해서 생성된 칼럼은 내부 데이터에 대한 뷰(view)이며 복사가 이루어지지 않는다. 
+# 따라서 이렇게 얻은 Series 객체에 대한 변경은 실제 DataFrame에 반영된다. 
+# 복사본이 필요할 때는 Series의 copy 메서드를 이용하자.
+
+# In[50]:
+
+dframe4
+
+
+# In[51]:
+
+debt_col = dframe4.debt
+debt_col
+
+
+# 아래와 같이 인덱싱을 사용하여 값을 변경할 수는 있지만 경고문이 뜬다.
+# 경고문은 슬라이싱(인덱싱) 결과에 수정을 가할 때 조심해야 한다는 내용이다. 
+
+# In[72]:
+
+debt_col.loc['one'] = 1.2
+
+
+# 하지만 값이 기존의 dframe4까지 영향을 주는 것을 아래와 같이 확인할 수 있다.
+# 위 경고문의 내용처럼 뷰 방식으로 작동하는 경우 데이터를 수정할 때 매우 조심해야 한다.
+
+# In[53]:
+
+dframe4
+
+
+# `copy()` 메소드를 사용하면 앞서 설명한 문제는 발생하지 않는다. 
+
+# In[54]:
+
+debt_col_copy = dframe4.debt.copy()
+
+
+# `debt_col_copy`의 데이터를 수정하자. 
+# 더 이상 경고문이 뜨지 않는다.
+
+# In[55]:
+
+debt_col_copy.loc['one'] = -1.2
+
+
+# 또한 기존의 `dframe4`가 변경되지 않았음을 확인할 수 있다.
+
+# In[57]:
+
+dframe4
+
+
+# ### 데이터프레임 생성: 중첩 사전 활용
+# 
+# * 중첩 사전을 이용하여 데이터플레임을 생성할 수 있다.
+
+# In[58]:
+
+pop = {'Nevada' : {2001: 2.4, 2002: 2.9},
+       'Ohio': {2000: 1.5, 2001: 1.7, 2002: 3.6}}
+
+
+# 바깥에 있는 사전의 키 값이 칼럼이 되고 안에 있는 키는 인덱스가 된다.
+
+# In[59]:
+
+dframe5 = DataFrame(pop)
+dframe5
+
+
+# * 색인을 직접 지정한다면 지정된 색인으로 DataFrame을 생성한다.
+
+# In[60]:
+
+DataFrame(pop, index=[2001, 2002, 2003])
+
+
+# * Series 객체를 담고 있는 사전 데이터도 같은 방식으로 취급된다.
+
+# In[61]:
+
+dframe5['Ohio'][:-1]
+
+
+# In[62]:
+
+dframe5['Nevada'][:2]
+
+
+# In[63]:
+
+pdata = {'ohio' : dframe5['Ohio'][:-1],
+         'Nevada': dframe5['Nevada'][:2]}
+DataFrame(pdata)
+
+
+# ### 전치행렬 활용
+# 
+# 넘파이에서와 마찬가지로 행과 열을 바꿀 수 있다.
+
+# #### 주의
+# 
+# 전치행렬이 뷰 방식을 따른다. 
+# 따라서 기본적으로 copy() 함수를 사용하여 기존 데이터와의 관계를 끊는 게 좋다.
+
+# In[64]:
+
+dframe5T = dframe5.T.copy()
+dframe5T
+
+
+# In[65]:
+
+dframe5['Nevada'].iloc[0] = 1.0
+dframe5
+
+
+# In[66]:
+
+dframe5T
+
+
+# ### name 속성
+# 
+# name 속성을 이용하여 컬럼과 index에 이름을 지정할 수 있다.
+
+# In[68]:
+
+dframe5.index.name = 'year'
+dframe5.columns.name = 'state'
+dframe5
+
+
+# ### 값(values) 속성
+# 
+# Series와 유사하게 values 속성은 DataFrame에 저장된 데이터를 2차원 배열로 반환한다.
+
+# In[69]:
+
+dframe5.values
+
+
+# DataFrame의 칼럼에 서로 다른 dtype이 있다면 모든 칼럼을 수용하기 위해 object라는 dtype이 선택된다.
+# object를 만능 자료형이라 생각하면 편하다. 실제로는 4개의 포인터로 구성된다.
+
+# In[70]:
+
+dframe3.values
 
