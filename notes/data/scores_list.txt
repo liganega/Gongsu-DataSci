@@ -1,0 +1,9 @@
+Name    Score
+player1 21.09
+player2 20.32
+player3 21.81
+player4 22.97
+player5 23.29
+player6 22.09
+player7 21.20
+player8 22.16
