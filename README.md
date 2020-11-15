@@ -28,13 +28,8 @@
 
 컴퓨터 프로그래밍을 하려면 개발환경을 준비해야 하며, 두 가지 방식이 있다.
 
-1. 온라인 개발환경
-    * 인터넷만 지원되면 사용가능
-    * 여기서는 [repl.it](https://repl.it) 사이트 활용. 
-        사용법은 [동영상](https://www.youtube.com/watch?v=dWtCVbuwC_c&list=PL5aSjzJqCaPY0Nyu_hUVU8_HhBARlgP-f&index=3&t=571s) 참조.
 1. 오프라인 개발환경
     * 개인 컴퓨터에 파이썬을 설치한 후 사용.
     * 추천 개발환경: 아나콘다 패키지 + Visual Studio Code
-    * 윈도우용 참고 사이트
-        * [Visual Studio Code를 사용하여 Python 프로그래밍 환경 만들기](https://www.youtube.com/watch?v=e4n2VnhiI28)
-        * [초보자를 위한 Windows에서 Python 사용 시작](https://docs.microsoft.com/ko-kr/windows/python/beginners)
+    
+1. 온라인 개발환경(추후 안내)
