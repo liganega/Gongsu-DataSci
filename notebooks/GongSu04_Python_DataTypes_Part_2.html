@@ -13084,16 +13084,6 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="&#49688;&#51221;-&#49324;&#54637;">&#49688;&#51221; &#49324;&#54637;<a class="anchor-link" href="#&#49688;&#51221;-&#49324;&#54637;">&#182;</a></h4><ul>
-<li>문자열 메소드 사용 예제: 보다 실용적인 예제였으면 함.</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="&#50836;&#50557;">&#50836;&#50557;<a class="anchor-link" href="#&#50836;&#50557;">&#182;</a></h2><ul>
 <li>문자열 자료형 다루기</li>
 <li>문자열 메소드 활용</li>
@@ -13118,10 +13108,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="&#52572;&#51333;-&#47785;&#54364;">&#52572;&#51333; &#47785;&#54364;<a class="anchor-link" href="#&#52572;&#51333;-&#47785;&#54364;">&#182;</a></h3><ul>
-<li>아래 사이트에서 커피콩의 가격정보 자동으로 확인하여 응용하기</li>
-</ul>
-<p><a href="http://beans-r-us.appspot.com/prices.html">http://beans-r-us.appspot.com/prices.html</a></p>
+<h3 id="&#52572;&#51333;-&#47785;&#54364;">&#52572;&#51333; &#47785;&#54364;<a class="anchor-link" href="#&#52572;&#51333;-&#47785;&#54364;">&#182;</a></h3><p>아래 사이트에서 커피콩의 가격정보 자동으로 확인하여 응용한다.</p>
+<p><a href="http://beans.itcarlow.ie/prices.html">http://beans.itcarlow.ie/prices.html</a></p>
 <p>위 사이트를 방문하면 실시간으로 변하는 커피콩의 시세를 아래와 같은 내용으로 확인할 수 있다.</p>
 <p>참조: Head First Programming(한빛미디어) 2장</p>
 
@@ -13141,8 +13129,7 @@ div#notebook {
 </tr>
 
 </table>
-</p><p>참조: <a href="http://beans-r-us.appspot.com/prices.html">http://beans-r-us.appspot.com/prices.html</a></p>
-
+</p>
 </div>
 </div>
 </div>
@@ -13183,7 +13170,7 @@ div#notebook {
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span>
 
-<span class="n">page</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;http://beans-r-us.appspot.com/prices.html&quot;</span><span class="p">)</span>
+<span class="n">page</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;http://beans.itcarlow.ie/prices.html&quot;</span><span class="p">)</span>
 <span class="n">text</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span>
 </pre></div>
 
@@ -13227,7 +13214,7 @@ div#notebook {
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;&lt;html&gt;&lt;head&gt;&lt;title&gt;Welcome to the Beans\&#39;R\&#39;Us Pricing Page&lt;/title&gt;\n&lt;link rel=&#34;stylesheet&#34; type=&#34;text/css&#34; href=&#34;beansrus.css&#34; /&gt;\n&lt;/head&gt;&lt;body&gt;\n&lt;h2&gt;Welcome to the Beans\&#39;R\&#39;Us Pricing Page&lt;/h2&gt;\n&lt;p&gt;Current price of coffee beans = &lt;strong&gt;$6.84&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;Price valid for 15 minutes from Wed Sep 12 02:51:59 2018.&lt;/p&gt;\n&lt;/body&gt;&lt;/html&gt;&#39;</pre>
+<pre>&#39;&lt;html&gt;&lt;head&gt;&lt;title&gt;Welcome to the Beans\&#39;R\&#39;Us Pricing Page&lt;/title&gt;\n&lt;link rel=&#34;stylesheet&#34; type=&#34;text/css&#34; href=&#34;beansrus.css&#34; /&gt;\n&lt;/head&gt;&lt;body&gt;\n&lt;h2&gt;Welcome to the Beans\&#39;R\&#39;Us Pricing Page&lt;/h2&gt;\n&lt;p&gt;Current price of coffee beans = &lt;strong&gt;$6.51&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;Price valid for 15 minutes from Thu Jan 28 16:13:02 2021.&lt;/p&gt;\n&lt;/body&gt;&lt;/html&gt;\n&#39;</pre>
 </div>
 
 </div>
@@ -13270,9 +13257,10 @@ div#notebook {
 &lt;link rel=&#34;stylesheet&#34; type=&#34;text/css&#34; href=&#34;beansrus.css&#34; /&gt;
 &lt;/head&gt;&lt;body&gt;
 &lt;h2&gt;Welcome to the Beans&#39;R&#39;Us Pricing Page&lt;/h2&gt;
-&lt;p&gt;Current price of coffee beans = &lt;strong&gt;$6.84&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Price valid for 15 minutes from Wed Sep 12 02:51:59 2018.&lt;/p&gt;
+&lt;p&gt;Current price of coffee beans = &lt;strong&gt;$6.51&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Price valid for 15 minutes from Thu Jan 28 16:13:02 2021.&lt;/p&gt;
 &lt;/body&gt;&lt;/html&gt;
+
 </pre>
 </div>
 </div>
@@ -13337,7 +13325,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">page</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;http://beans-r-us.appspot.com/prices.html&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">page</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;http://beans.itcarlow.ie/prices.html&quot;</span><span class="p">)</span>
 <span class="n">text_bytes</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 </pre></div>
 
@@ -13403,7 +13391,7 @@ div#notebook {
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>b&#39;&lt;html&gt;&lt;head&gt;&lt;title&gt;Welcome to the Beans\&#39;R\&#39;Us Pricing Page&lt;/title&gt;\n&lt;link rel=&#34;stylesheet&#34; type=&#34;text/css&#34; href=&#34;beansrus.css&#34; /&gt;\n&lt;/head&gt;&lt;body&gt;\n&lt;h2&gt;Welcome to the Beans\&#39;R\&#39;Us Pricing Page&lt;/h2&gt;\n&lt;p&gt;Current price of coffee beans = &lt;strong&gt;$6.21&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;Price valid for 15 minutes from Wed Sep 12 02:52:00 2018.&lt;/p&gt;\n&lt;/body&gt;&lt;/html&gt;&#39;</pre>
+<pre>b&#39;&lt;html&gt;&lt;head&gt;&lt;title&gt;Welcome to the Beans\&#39;R\&#39;Us Pricing Page&lt;/title&gt;\n&lt;link rel=&#34;stylesheet&#34; type=&#34;text/css&#34; href=&#34;beansrus.css&#34; /&gt;\n&lt;/head&gt;&lt;body&gt;\n&lt;h2&gt;Welcome to the Beans\&#39;R\&#39;Us Pricing Page&lt;/h2&gt;\n&lt;p&gt;Current price of coffee beans = &lt;strong&gt;$6.51&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;Price valid for 15 minutes from Thu Jan 28 16:13:02 2021.&lt;/p&gt;\n&lt;/body&gt;&lt;/html&gt;\n&#39;</pre>
 </div>
 
 </div>
@@ -13554,9 +13542,10 @@ div#notebook {
 &lt;link rel=&#34;stylesheet&#34; type=&#34;text/css&#34; href=&#34;beansrus.css&#34; /&gt;
 &lt;/head&gt;&lt;body&gt;
 &lt;h2&gt;Welcome to the Beans&#39;R&#39;Us Pricing Page&lt;/h2&gt;
-&lt;p&gt;Current price of coffee beans = &lt;strong&gt;$6.84&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Price valid for 15 minutes from Wed Sep 12 02:51:59 2018.&lt;/p&gt;
+&lt;p&gt;Current price of coffee beans = &lt;strong&gt;$6.51&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Price valid for 15 minutes from Thu Jan 28 16:13:02 2021.&lt;/p&gt;
 &lt;/body&gt;&lt;/html&gt;
+
 </pre>
 </div>
 </div>
@@ -13859,7 +13848,7 @@ div#notebook {
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">IndexError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-15-7d78ea00cfa7&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">&lt;ipython-input-15-d133e021743e&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
 <span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>a_food<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">5</span><span class="ansi-blue-fg">]</span>
 
 <span class="ansi-red-fg">IndexError</span>: string index out of range</pre>
@@ -14523,7 +14512,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>6.84
+<pre>6.51
 </pre>
 </div>
 </div>
@@ -14565,7 +14554,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>6.84
+<pre>6.51
 </pre>
 </div>
 </div>
@@ -14779,7 +14768,7 @@ div#notebook {
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-37-1264ce07b5b6&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">&lt;ipython-input-37-3a2e96d6509a&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
 <span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>int<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;4.2&#39;</span><span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">*</span> <span class="ansi-cyan-fg">2</span>
 
 <span class="ansi-red-fg">ValueError</span>: invalid literal for int() with base 10: &#39;4.2&#39;</pre>
@@ -14823,7 +14812,7 @@ div#notebook {
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-38-f54447414779&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">&lt;ipython-input-38-edba47f06f21&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
 <span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>float<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;4.5GB&#39;</span><span class="ansi-blue-fg">)</span>
 
 <span class="ansi-red-fg">ValueError</span>: could not convert string to float: &#39;4.5GB&#39;</pre>
@@ -14865,7 +14854,7 @@ div#notebook {
 <span class="k">while</span> <span class="n">price</span> <span class="o">&lt;</span> <span class="mf">6.0</span><span class="p">:</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>       <span class="c1"># 코드 실행을 1초 정지한다.</span>
     
-    <span class="n">page</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;http://beans-r-us.appspot.com/prices.html&quot;</span><span class="p">)</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;http://beans.itcarlow.ie/prices.html&quot;</span><span class="p">)</span>
     <span class="n">text</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span>
     
     <span class="n">where</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;&gt;$&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span>
@@ -14889,7 +14878,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>커피콩 현재 가격이 6.17 입니다. 아메리카노 가격을 인상하세요!
+<pre>커피콩 현재 가격이 6.54 입니다. 아메리카노 가격을 인상하세요!
 </pre>
 </div>
 </div>
@@ -16358,7 +16347,7 @@ False</code></pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[75]:</div>
+<div class="prompt input_prompt">In&nbsp;[77]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span>
@@ -16371,7 +16360,7 @@ False</code></pre>
     <span class="k">while</span> <span class="mf">5.5</span> <span class="o">&lt;</span> <span class="n">price</span> <span class="o">&lt;</span> <span class="mf">6.0</span><span class="p">:</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>       <span class="c1"># 코드 실행을 1초 정지한다.</span>
 
-        <span class="n">page</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;http://beans-r-us.appspot.com/prices.html&quot;</span><span class="p">)</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;http://beans.itcarlow.ie/prices.html&quot;</span><span class="p">)</span>
         <span class="n">text</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span>
 
         <span class="n">where</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;&gt;$&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span>
@@ -16404,7 +16393,7 @@ False</code></pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[76]:</div>
+<div class="prompt input_prompt">In&nbsp;[78]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">price_setter</span><span class="p">(</span><span class="mf">5.7</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
@@ -16424,8 +16413,8 @@ False</code></pre>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>현재 커피콩 가격이 5.25 달러 입니다.
-아메리카노 가격을 0.5 달러만큼 인하하세요!
+<pre>현재 커피콩 가격이 6.42 달러 입니다.
+아메리카노 가격을 0.5 달러만큼 인상하세요!
 </pre>
 </div>
 </div>
@@ -16447,7 +16436,7 @@ False</code></pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[77]:</div>
+<div class="prompt input_prompt">In&nbsp;[79]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span>
@@ -16471,7 +16460,7 @@ False</code></pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[78]:</div>
+<div class="prompt input_prompt">In&nbsp;[80]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">text</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1000</span><span class="p">]</span>
@@ -16487,13 +16476,13 @@ False</code></pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[78]:</div>
+    <div class="prompt output_prompt">Out[80]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34; ?&gt;\r\n&lt;rss version=&#34;2.0&#34;&gt;\r\n&lt;channel&gt;\r\n&lt;title&gt;기상청 육상 중기예보&lt;/title&gt;\r\n&lt;link&gt;http://www.kma.go.kr/weather/forecast/mid-term_01.jsp&lt;/link&gt;\r\n&lt;description&gt;기상청 날씨 웹서비스&lt;/description&gt;\r\n&lt;language&gt;ko&lt;/language&gt;\r\n&lt;generator&gt;기상청&lt;/generator&gt;\r\n&lt;pubDate&gt;2018년 09월 12일 (수)요일 06:00&lt;/pubDate&gt;\r\n &lt;item&gt;\r\n&lt;author&gt;기상청&lt;/author&gt;\r\n&lt;category&gt;육상중기예보&lt;/category&gt;\r\n&lt;title&gt;전국 육상 중기예보 - 2018년 09월 12일 (수)요일 06:00 발표&lt;/title&gt;\r\n&lt;link&gt;http://www.kma.go.kr/weather/forecast/mid-term_01.jsp&lt;/link&gt;\r\n&lt;guid&gt;http://www.kma.go.kr/weather/forecast/mid-term_01.jsp&lt;/guid&gt;\r\n&lt;description&gt;\r\n\t&lt;header&gt;\r\n\t\t&lt;title&gt;전국 육상중기예보&lt;/title&gt;\r\n\t\t&lt;tm&gt;201809120600&lt;/tm&gt;\r\n\t\t&lt;wf&gt;&lt;![CDATA[기압골의 영향으로 15일은 전국(제주도 제외)에 비가 오겠고, 그 밖의 날은 고기압의 영향으로 대체로 맑겠습니다.&lt;br /&gt;기온은 평년(최저기온: 11~20℃, 최고기온: 23~27℃)과 비슷하거나 조금 높겠습니다.&lt;br /&gt;강수량은 평년(3~9mm)보다 조금 많겠습니다.]]&gt;&lt;/wf&gt;\r\n\t&lt;/header&gt;\r\n\t&lt;body&gt;\r\n\t\t\t\t\r\n\r\n\t\t&lt;location wl_ver=&#34;3&#34;&gt;\r\n\t\t\t\t&lt;province&gt;서울ㆍ인천ㆍ경기도&lt;/province&gt;\r\n\t\t\t\t&lt;city&gt;서울&lt;/city&gt;\r\n\t\t\t\t\r\n\t\t\t\t&lt;data&gt;\r\n\t\t\t\t\t&lt;mode&gt;A02&lt;/mode&gt;\r\n\t\t\t\t\t&lt;tmEf&gt;2018-09-15 00:00&lt;/t&#39;</pre>
+<pre>&#39;&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34; ?&gt;\r\n&lt;rss version=&#34;2.0&#34;&gt;\r\n&lt;channel&gt;\r\n&lt;title&gt;기상청 육상 중기예보&lt;/title&gt;\r\n&lt;link&gt;http://www.kma.go.kr/weather/forecast/mid-term_01.jsp&lt;/link&gt;\r\n&lt;description&gt;기상청 날씨 웹서비스&lt;/description&gt;\r\n&lt;language&gt;ko&lt;/language&gt;\r\n&lt;generator&gt;기상청&lt;/generator&gt;\r\n&lt;pubDate&gt;2021년 01월 28일 (목)요일 18:00&lt;/pubDate&gt;\r\n &lt;item&gt;\r\n&lt;author&gt;기상청&lt;/author&gt;\r\n&lt;category&gt;육상중기예보&lt;/category&gt;\r\n&lt;title&gt;전국 육상 중기예보 - 2021년 01월 28일 (목)요일 18:00 발표&lt;/title&gt;\r\n&lt;link&gt;http://www.kma.go.kr/weather/forecast/mid-term_01.jsp&lt;/link&gt;\r\n&lt;guid&gt;http://www.kma.go.kr/weather/forecast/mid-term_01.jsp&lt;/guid&gt;\r\n&lt;description&gt;\r\n\t&lt;header&gt;\r\n\t\t&lt;title&gt;전국 육상중기예보&lt;/title&gt;\r\n\t\t&lt;tm&gt;202101281800&lt;/tm&gt;\r\n\t\t&lt;wf&gt;&lt;![CDATA[○ (강수) 2월 1일(월)은 제주도와 경남권에 비가 오겠습니다.&lt;br /&gt;○ (기온) 31일(일)~2월 7일(일) 아침 기온은 -10~8도, 낮 기온은 -2~13도로 오늘(아침최저기온 -3~4도, 낮최고기온 0~12도)보다 낮겠습니다. &lt;br /&gt;○ (주말전망) 30일(토)은 전국이 가끔 구름많다가 오후부터 차차 맑아지겠으나, 아침부터 낮 사이 경기남부, 강원영서에 눈이 오는 곳이 있겠습니다.&lt;br /&gt;              31일(일)은 전국이 대체로 맑겠으나 충남권과 전라권, 제주도는 가끔 구름많겠습니다. 아침 기온은 -12~3도, 낮 기온은 5~12도의 분포가 되겠습니다.]]&gt;&lt;/wf&gt;\r\n\t&lt;/hea&#39;</pre>
 </div>
 
 </div>
@@ -16512,7 +16501,7 @@ False</code></pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[79]:</div>
+<div class="prompt input_prompt">In&nbsp;[81]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">where_s</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;CDATA[]&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">6</span>
