@@ -1,6 +1,6 @@
 ## 소개
 
-파이썬을 활용한 데이터분석의 기초를 학습합니다.
+파이썬을 활용한 데이터분석 입문에 필요한 기초지식을 학습합니다.
 
 ## 목차
 
@@ -27,8 +27,7 @@
 
 컴퓨터 프로그래밍을 하려면 개발환경을 준비해야 하며, 두 가지 방식이 있습니다.
 
-1. (추천)온라인 개발환경
-    * [![구글 코랩 활용](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/notebooks/intro.ipynb)
+1. (추천)온라인 개발환경: [![구글 코랩 활용](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/notebooks/intro.ipynb)
 
 1. 오프라인 개발환경
     * 개발환경: 아나콘다 패키지 + Visual Studio Code
