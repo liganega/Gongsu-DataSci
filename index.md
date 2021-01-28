@@ -29,8 +29,8 @@
 
 1. (추천) [구글 코랩 활용 ](https://colab.research.google.com/github/liganega/Gongsu-DataSci/blob/master/)
 <a href="https://colab.research.google.com/github/liganega/Gongsu-DataSci/blob/master/"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
-
-    *주의: 온라인 상에서 작업한 내용은 저장되지 않으며, 따라서 먼저 자신의 계정으로 사본을 만들어야 함.
+    * 주의: 온라인 상에서 작업한 내용은 저장되지 않으며, 따라서 먼저 자신의 계정으로 사본을 만들어야 함.
+    * [구글 코랩 사용법 안내 동영상](https://www.youtube.com/watch?v=Jb_n90gHdP0) 참조
 
 1. 오프라인 개발환경
     * 개발환경: 아나콘다 패키지 + Visual Studio Code
