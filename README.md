@@ -4,5 +4,5 @@
 파이썬을 활용한 데이터분석 입문에 필요한 기초지식을 학습합니다.
 
 학습 내용 및 프로그래밍 환경, 주피터 노트북 등 학습환경과 관련된 자세한 사항은 
-[강좌 홈페이지](https://formal.hknu.ac.kr/Gongsu-DataSci/)에서 
+[강의노트 홈페이지](https://formal.hknu.ac.kr/Gongsu-DataSci/)에서 
 확인할 수 있습니다.
