@@ -1,3 +1,0 @@
-Bread 1 3000
-Tomato 6 2000
-Cola 1  1500
