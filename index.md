@@ -31,6 +31,7 @@
 <a href="https://colab.research.google.com/github/liganega/Gongsu-DataSci/blob/master/"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 *주의: 온라인 상에서 작업한 내용은 저장되지 않으며, 따라서 먼저 자신의 계정으로 사본을 만들어야 함.
+
 1. 오프라인 개발환경
     * 개발환경: 아나콘다 패키지 + Visual Studio Code
     
