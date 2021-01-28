@@ -5,7 +5,7 @@
 ## 목차
 
 1. [강의소개](./notebooks/GongSu01_Lecture_Intro.html)
-1. [프로그래밍 환경설정: 아나콘다 소개](./notebooks/GongSu02_Anaconda_Installation.html)
+1. [오프라인 프로그래밍 환경설정: 아나콘다 소개](./notebooks/GongSu02_Anaconda.html)
 1. [파이썬 기본 자료형 1부](./notebooks/GongSu03_Python_DataTypes_Part_1.html)
 1. [파이썬 기본 자료형 2부](./notebooks/GongSu04_Python_DataTypes_Part_2.html)
 1. [흐름 제어: 조건문과 반복문(루프) 활용](./notebooks/GongSu05_Flow_Control.html)
@@ -33,5 +33,6 @@
     * [구글 코랩 사용법 안내 동영상](https://www.youtube.com/watch?v=Jb_n90gHdP0) 참조
 
 1. 오프라인 개발환경
-    * 개발환경: 아나콘다 패키지 + Visual Studio Code
+    * 개발환경: 아나콘다 패키지 + 주피터 노트북
+    * 참조: [오프라인 프로그래밍 환경설정: 아나콘다 소개](./notebooks/GongSu02_Anaconda.html)
     
